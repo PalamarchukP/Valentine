@@ -1,0 +1,375 @@
+@font-face {
+  font-family: "font";
+  src: url("fonts/font.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "pixel";
+  src: url("fonts/pixel.ttf") format("truetype");
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #e599f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.valentine-container {
+  font-family: "pixel", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #e91e63;
+}
+
+button {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: "pixel", sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+button:hover {
+  background-color: #d81b60;
+}
+
+.first-step {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+}
+
+.hearts-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hearts-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    url("images/heart.svg"), url("images/heart.svg"), url("images/heart.svg"),
+    url("images/heart.svg"), url("images/heart.svg"), url("images/heart.svg"),
+    url("images/heart.svg"), url("images/heart.svg"), url("images/heart.svg"),
+    url("images/heart.svg"), url("images/heart.svg"), url("images/heart.svg"),
+    url("images/heart.svg"), url("images/heart.svg"), url("images/heart.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position:
+    10% 10%,
+    20% 30%,
+    30% 20%,
+    40% 40%,
+    50% 10%,
+    60% 30%,
+    70% 20%,
+    80% 40%,
+    90% 10%,
+    15% 50%,
+    25% 70%,
+    35% 60%,
+    45% 80%,
+    55% 70%,
+    65% 90%;
+  opacity: 0.3;
+}
+
+.first-step > *:not(.hearts-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+.heart-main {
+  height: 100px;
+  width: 100px;
+}
+
+.main-first-text {
+}
+
+.second-step {
+  background-image: url("images/second.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-attachment: fixed; 
+  width: 100vw;
+  height: 100vh; 
+  position: relative;
+}
+
+.pet-buttons {
+  position: absolute;
+  background-color: #9494ff;
+  padding: 5px;
+}
+
+.pet-button1 {
+  bottom: 27%;
+  left: 37%;
+  transform: translateX(-50%);
+}
+
+.pet-button2 {
+  bottom: 32%;
+  left: 78%;
+  transform: translateX(-50%);
+}
+
+/* Скрываем иконку по умолчанию */
+.love-heart {
+  display: none; /* Скрыто по умолчанию */
+  position: absolute;
+  width: 100px;
+  height: auto;
+  transform: translateY(0); /* Начальная позиция */
+  opacity: 0; /* Начальная прозрачность */
+}
+
+/* Анимация для перемещения сердечка вверх */
+@keyframes moveHeartUp {
+  0% {
+    transform: translateY(0); /* Изначальная позиция */
+    opacity: 0; /* Иконка невидима */
+  }
+  50% {
+    transform: translateY(-50px); /* Двигаем вверх */
+    opacity: 1; /* Иконка становится видимой */
+  }
+  100% {
+    transform: translateY(-100px); /* Ещё выше */
+    opacity: 0; /* Иконка исчезает */
+  }
+}
+
+/* Добавляем класс анимации, когда иконка должна двигаться */
+.animate-heart {
+  animation: moveHeartUp 1s ease-in-out forwards;
+}
+
+.walk {
+  background-color: #ff8ab1;
+  margin-top: 3%;
+}
+
+.img-kirill {
+  position: absolute;
+  bottom: 15%;
+  left: 40%;
+  transform: translateX(-50%);
+  width: 5%;
+  height: auto;
+}
+
+.img-polina {
+  position: absolute;
+  bottom: 20%;
+  left: 75%;
+  transform: translateX(-50%);
+  width: 7%;
+  height: auto;
+}
+
+.sleep {
+  position: absolute;
+  bottom: 24%;
+  left: 80%;
+  transform: translateX(-50%);
+  width: 200px;
+}
+
+.third-step {
+  background-image: url("images/moonlight.jpg");
+  background-size: cover; /* Растягиваем изображение, чтобы оно заполнило весь экран */
+  background-position: center; /* Центрируем изображение */
+  background-attachment: fixed; /* Фиксируем фон при прокрутке */
+  width: 100vw;
+  height: 100vh; 
+  position: relative;
+}
+
+.table {
+  position: absolute;
+  bottom: 3%;
+  left: 30%;
+  transform: translateX(-50%);
+  width: 14%;
+  height: auto;
+}
+
+.go {
+  position: absolute;
+  bottom: 0px;
+  left: 70%;
+  transform: translateX(-50%);
+  width: 12%;
+  height: auto;
+}
+
+@keyframes goToTable {
+  0% {
+    left: 70%;
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    left: 30%;
+    opacity: 0;
+    transform: translateX(-50%) scale(0.9);
+  }
+}
+
+.third-step .table {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+@keyframes tableFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.third-step.active .go {
+  animation: goToTable 2000ms ease-in-out forwards;
+}
+
+.third-step.active .table {
+  animation: tableFadeIn 400ms ease-in-out 1800ms forwards;
+}
+
+.food-massage {
+  position: absolute;
+  bottom: 24%;
+  left: 17%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  color: #fff;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.wind {
+  position: absolute;
+  bottom: 21%;
+  left: 15%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 138, 177, 0.4);
+}
+
+/* Контейнер для лепестков сакуры */
+.petal-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden; /* Обрезаем лепестки по границе секции, чтобы не появлялся скролл */
+  z-index: 10;
+}
+
+.petal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 28px;
+  height: auto;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-origin: center;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  100% {
+    /* Перемещаемся диагонально влево-вниз, но не за пределы экрана */
+    transform: translate(-70vw, 70vh) rotate(360deg) scale(0.9);
+  }
+}
+
+.fourth-step {
+  background-image: url("images/third.png");
+  background-size: cover; /* Растягиваем изображение, чтобы оно заполнило весь экран */
+  background-position: center; /* Центрируем изображение */
+  background-attachment: fixed; /* Фиксируем фон при прокрутке */
+  width: 100vw;
+  height: 100vh; /* Задаем высоту на весь экран */
+}
+
+.img-together {
+  position: absolute;
+  bottom: 37%;
+  left: 45%;
+  transform: translateX(-50%);
+  width: 9%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.massage-icon {
+  position: absolute;
+  bottom: 45%;
+  left: 49%;
+  transform: translateX(-50%);
+  width: 5.5%;
+  height: auto;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.massage-text {
+  position: absolute;
+  bottom: 46%;
+  left: 49.9%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #000;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5); /* Иконка будет маленькой в начале */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); /* Иконка становится нормального размера */
+  }
+}

@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Валентинка</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Скрываем все секции по умолчанию */
+      .content-section {
+        display: none;
+      }
+
+      /* Показываем активную секцию */
+      .active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="valentine-container">
+      <!-- первая страница -->
+      <div id="section1" class="first-step content-section active">
+        <div class="hearts-bg"></div>
+        <h1>С Днем Святого Валентина</h1>
+        <img src="images/heart.svg" alt="Сердечко" class="heart-main" />
+        <p class="main-first-text">Эта открытка для тебя</p>
+        <button id="nextButton1">тук-тук</button>
+      </div>
+
+      <!-- секция с котиками и сердечками -->
+      <div id="section2" class="second-step content-section">
+        <button id="petButton1" class="pet-buttons pet-button1">
+          погладить
+        </button>
+        <button id="petButton2" class="pet-buttons pet-button2">
+          погладить
+        </button>
+        <img src="images/kirill_1.png" class="img-kirill" alt="Кирилл" />
+        <img src="images/polina_1.png" class="img-polina" alt="Полина" />
+
+        <img
+          id="heartIcon1"
+          class="love-heart"
+          src="images/love-heart.svg"
+          alt="Сердечко котика 1"
+        />
+        <img
+          id="heartIcon2"
+          class="love-heart"
+          src="images/love-heart.svg"
+          alt="Сердечко котика 2"
+        />
+        <img
+          src="images/sleep.png"
+          id="sleep1"
+          class="sleep"
+          alt="лежим"
+          style="display: none"
+        />
+        <button id="nextButton2" class="walk">погулять -></button>
+      </div>
+
+      <!-- новая третья (прогулка) страница -->
+      <div id="section3" class="third-step content-section">
+        <button id="toFourthButton" class="walk">идем -></button>
+        <button
+          id="windButton"
+          class="walk wind"
+          style="display: none; margin-left: 10px"
+        >
+          ... дуновение ветра
+        </button>
+        <div class="petal-container" aria-hidden="true"></div>
+        <img src="images/go.png" class="go" alt="идем" />
+        <img src="images/table.png" class="table" alt="столик" />
+        <p class="food-massage" style="display: none">с тобой еда вкуснее..</p>
+      </div>
+
+      <!-- четвертая страница -->
+      <div id="section4" class="fourth-step content-section">
+        <img src="images/together_3.png" class="img-together" alt="Мы" />
+        <img
+          src="images/massage.png"
+          id="massageIcon"
+          class="massage-icon"
+          alt="фраза"
+        />
+        <p class="massage-text">я люблю тебя</p>
+      </div>
+    </div>
+    <script>
+      // Функция для переключения контента
+      function showSection(sectionId) {
+        const sections = document.querySelectorAll(".content-section");
+        sections.forEach((section) => section.classList.remove("active"));
+        const section = document.getElementById(sectionId);
+        if (!section) {
+          console.error("showSection: section not found:", sectionId);
+          return;
+        }
+        section.classList.add("active");
+        if (sectionId === "section3") {
+          const goImg = section.querySelector(".go");
+          if (goImg) {
+            goImg.style.transition = "";
+            goImg.style.left = "";
+            goImg.style.top = "";
+            goImg.style.position = "";
+            goImg.style.transform = "";
+            goImg.style.zIndex = "";
+          }
+          const tableImg = section.querySelector(".table");
+          if (tableImg) {
+            tableImg.style.opacity = "";
+            tableImg.style.visibility = "";
+            tableImg.style.transition = "";
+          }
+          // Показать кнопку "дуновение ветра" и текст после окончания анимации .go
+          const windButton = section.querySelector("#windButton");
+          const foodMsg = section.querySelector(".food-massage");
+          if (windButton) windButton.style.display = "none";
+          if (foodMsg) foodMsg.style.display = "none";
+          if (goImg) {
+            const onEnd = function () {
+              goImg.removeEventListener("animationend", onEnd);
+              if (windButton) windButton.style.display = "inline-block";
+              if (foodMsg) foodMsg.style.display = "block";
+            };
+            goImg.addEventListener("animationend", onEnd);
+          }
+        }
+      }
+
+      // Переключаем контент при нажатии на кнопки
+      document
+        .getElementById("nextButton1")
+        .addEventListener("click", function () {
+          showSection("section2");
+        });
+
+      document
+        .getElementById("nextButton2")
+        .addEventListener("click", function () {
+          showSection("section3");
+        });
+
+      // Получаем элементы кнопок, иконок сердечка и картинок котиков
+      const petButton1 = document.getElementById("petButton1");
+      const petButton2 = document.getElementById("petButton2");
+      const heartIcon1 = document.getElementById("heartIcon1");
+      const heartIcon2 = document.getElementById("heartIcon2");
+      const imgKirill = document.querySelector(".img-kirill");
+      const imgPolina = document.querySelector(".img-polina");
+
+      // Координаты для котиков, которые ты задашь
+      const coordinates1 = { top: 990, left: 1000 }; // Координаты для котика 1
+      const coordinates2 = { top: 930, left: 1860 }; // Координаты для котика 2
+
+      // Счетчик нажатий
+      let pet1Clicked = false;
+      let pet2Clicked = false;
+
+      // Функция для показа сердечка и анимации
+      function showHeartIcon(heartIcon, coordinates) {
+        heartIcon.style.top = `${coordinates.top}px`;
+        heartIcon.style.left = `${coordinates.left}px`;
+        heartIcon.style.display = "inline-block"; // Показываем сердечко
+        heartIcon.classList.remove("animate-heart"); // Сброс анимации
+        void heartIcon.offsetWidth; // Принудительное обновление стилей
+        heartIcon.classList.add("animate-heart"); // Добавляем анимацию
+      }
+
+      // Функция для скрытия кнопок и картинок
+      function hideButtonsAndCats() {
+        petButton1.style.display = "none";
+        petButton2.style.display = "none";
+        if (imgKirill) imgKirill.style.display = "none";
+        if (imgPolina) imgPolina.style.display = "none";
+        // Показываем sleep
+        const sleepImg = document.getElementById("sleep1");
+        if (sleepImg) sleepImg.style.display = "inline-block";
+      }
+
+      // Проверка, нужно ли скрыть элементы
+      function checkAndHide() {
+        if (pet1Clicked && pet2Clicked) {
+          hideButtonsAndCats();
+        }
+      }
+
+      // Обработчики событий для кнопок
+      petButton1.addEventListener("click", function () {
+        console.log("Кнопка 'погладить котика 1' нажата");
+        showHeartIcon(heartIcon1, coordinates1); // Показываем сердечко для котика 1
+        pet1Clicked = true;
+        checkAndHide();
+      });
+
+      petButton2.addEventListener("click", function () {
+        console.log("Кнопка 'погладить котика 2' нажата");
+        showHeartIcon(heartIcon2, coordinates2); // Показываем сердечко для котика 2
+        pet2Clicked = true;
+        checkAndHide();
+      });
+
+      // Генерация лепестков сакуры при нажатии на windButton
+      const windButton = document.getElementById("windButton");
+      if (windButton) {
+        windButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const section3 = document.getElementById("section3");
+          const container = section3.querySelector(".petal-container");
+          if (!container) return;
+          windButton.disabled = true;
+          const petals = [];
+          const total = 50;
+          // Определяем 6 зон старта (проценты от верх/право)
+          const zones = [
+            { topMin: -12, topMax: -4, rightMin: -12, rightMax: -4 }, // прямо из-за верхнего правого угла (off-screen)
+            { topMin: -6, topMax: 4, rightMin: -8, rightMax: 2 }, // чуть правее сверху (частично off-screen)
+            { topMin: 0, topMax: 10, rightMin: 2, rightMax: 18 }, // правая сторона вверху
+            { topMin: 0, topMax: 12, rightMin: 30, rightMax: 50 }, // ближе к середине сверху
+            { topMin: 40, topMax: 70, rightMin: 0, rightMax: 18 }, // большой кластер внизу справа 1
+            { topMin: 55, topMax: 85, rightMin: 5, rightMax: 30 }, // большой кластер внизу справа 2
+            { topMin: 30, topMax: 55, rightMin: 18, rightMax: 40 }, // средняя правая зона
+            { topMin: 20, topMax: 45, rightMin: 25, rightMax: 60 }, // ещё зона справа-ниже
+          ];
+
+          let maxTime = 0;
+          for (let i = 0; i < total; i++) {
+            const p = document.createElement("img");
+            p.src = "images/sakura.png";
+            p.className = "petal";
+            // Выбираем зону циклически, чтобы все зоны использовались
+            const zone = zones[i % zones.length];
+            const topOffset =
+              zone.topMin + Math.random() * (zone.topMax - zone.topMin);
+            const rightOffset =
+              zone.rightMin + Math.random() * (zone.rightMax - zone.rightMin);
+            p.style.top = topOffset + "%";
+            p.style.right = rightOffset + "%";
+            // старт одновременно: задержка = 0; чуть быстрее длительность
+            const dur = 2000 + Math.random() * 1500; // 2.0-3.5s (ускорено)
+            const delay = 0; // стартуем одновременно
+            p.style.animation = `petalFall ${dur}ms linear ${delay}ms forwards`;
+            // случайный начальный поворот
+            p.style.transform = `rotate(${Math.random() * 360}deg)`;
+            // удаляем элемент по окончании анимации
+            p.addEventListener("animationend", () => {
+              if (p && p.parentNode) p.parentNode.removeChild(p);
+            });
+            container.appendChild(p);
+            petals.push(p);
+            const totalMs = dur + delay;
+            if (totalMs > maxTime) maxTime = totalMs;
+          }
+          // Разблокируем кнопку через максимум длительности (+ небольшой буфер), чтобы можно было повторить
+          setTimeout(
+            () => {
+              windButton.disabled = false;
+            },
+            Math.ceil(maxTime) + 300,
+          );
+        });
+      }
+
+      // Кнопка перехода со страницы прогулки на четвертую страницу (только навигация по клику)
+      const toFourthButton = document.getElementById("toFourthButton");
+      if (toFourthButton) {
+        toFourthButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log("toFourthButton clicked");
+          const target = document.getElementById("section4");
+          if (!target) {
+            console.error("target section4 not found");
+            return;
+          }
+          showSection("section4");
+        });
+      }
+    </script>
+  </body>
+</html>
