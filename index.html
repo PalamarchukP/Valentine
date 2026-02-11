@@ -6,12 +6,10 @@
     <title>Валентинка</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      /* Скрываем все секции по умолчанию */
       .content-section {
         display: none;
       }
 
-      /* Показываем активную секцию */
       .active {
         display: block;
       }
@@ -61,7 +59,7 @@
         <button id="nextButton2" class="walk">погулять -></button>
       </div>
 
-      <!-- новая третья (прогулка) страница -->
+      <!-- третья  страница -->
       <div id="section3" class="third-step content-section">
         <button id="toFourthButton" class="walk">идем -></button>
         <button
@@ -90,7 +88,6 @@
       </div>
     </div>
     <script>
-      // Функция для переключения контента
       function showSection(sectionId) {
         const sections = document.querySelectorAll(".content-section");
         sections.forEach((section) => section.classList.remove("active"));
@@ -116,7 +113,7 @@
             tableImg.style.visibility = "";
             tableImg.style.transition = "";
           }
-          // Показать кнопку "дуновение ветра" и текст после окончания анимации .go
+
           const windButton = section.querySelector("#windButton");
           const foodMsg = section.querySelector(".food-massage");
           if (windButton) windButton.style.display = "none";
@@ -132,7 +129,6 @@
         }
       }
 
-      // Переключаем контент при нажатии на кнопки
       document
         .getElementById("nextButton1")
         .addEventListener("click", function () {
@@ -145,7 +141,6 @@
           showSection("section3");
         });
 
-      // Получаем элементы кнопок, иконок сердечка и картинок котиков
       const petButton1 = document.getElementById("petButton1");
       const petButton2 = document.getElementById("petButton2");
       const heartIcon1 = document.getElementById("heartIcon1");
@@ -153,58 +148,51 @@
       const imgKirill = document.querySelector(".img-kirill");
       const imgPolina = document.querySelector(".img-polina");
 
-      // Координаты для котиков, которые ты задашь
-      const coordinates1 = { top: 990, left: 1000 }; // Координаты для котика 1
-      const coordinates2 = { top: 930, left: 1860 }; // Координаты для котика 2
+      const coordinates1 = { top: 990, left: 1000 };
+      const coordinates2 = { top: 930, left: 1860 };
 
-      // Счетчик нажатий
       let pet1Clicked = false;
       let pet2Clicked = false;
 
-      // Функция для показа сердечка и анимации
       function showHeartIcon(heartIcon, coordinates) {
         heartIcon.style.top = `${coordinates.top}px`;
         heartIcon.style.left = `${coordinates.left}px`;
-        heartIcon.style.display = "inline-block"; // Показываем сердечко
-        heartIcon.classList.remove("animate-heart"); // Сброс анимации
-        void heartIcon.offsetWidth; // Принудительное обновление стилей
-        heartIcon.classList.add("animate-heart"); // Добавляем анимацию
+        heartIcon.style.display = "inline-block";
+        heartIcon.classList.remove("animate-heart");
+        void heartIcon.offsetWidth;
+        heartIcon.classList.add("animate-heart");
       }
 
-      // Функция для скрытия кнопок и картинок
       function hideButtonsAndCats() {
         petButton1.style.display = "none";
         petButton2.style.display = "none";
         if (imgKirill) imgKirill.style.display = "none";
         if (imgPolina) imgPolina.style.display = "none";
-        // Показываем sleep
+
         const sleepImg = document.getElementById("sleep1");
         if (sleepImg) sleepImg.style.display = "inline-block";
       }
 
-      // Проверка, нужно ли скрыть элементы
       function checkAndHide() {
         if (pet1Clicked && pet2Clicked) {
           hideButtonsAndCats();
         }
       }
 
-      // Обработчики событий для кнопок
       petButton1.addEventListener("click", function () {
         console.log("Кнопка 'погладить котика 1' нажата");
-        showHeartIcon(heartIcon1, coordinates1); // Показываем сердечко для котика 1
+        showHeartIcon(heartIcon1, coordinates1);
         pet1Clicked = true;
         checkAndHide();
       });
 
       petButton2.addEventListener("click", function () {
         console.log("Кнопка 'погладить котика 2' нажата");
-        showHeartIcon(heartIcon2, coordinates2); // Показываем сердечко для котика 2
+        showHeartIcon(heartIcon2, coordinates2);
         pet2Clicked = true;
         checkAndHide();
       });
 
-      // Генерация лепестков сакуры при нажатии на windButton
       const windButton = document.getElementById("windButton");
       if (windButton) {
         windButton.addEventListener("click", function (e) {
@@ -216,16 +204,16 @@
           windButton.disabled = true;
           const petals = [];
           const total = 50;
-          // Определяем 6 зон старта (проценты от верх/право)
+
           const zones = [
-            { topMin: -12, topMax: -4, rightMin: -12, rightMax: -4 }, // прямо из-за верхнего правого угла (off-screen)
-            { topMin: -6, topMax: 4, rightMin: -8, rightMax: 2 }, // чуть правее сверху (частично off-screen)
-            { topMin: 0, topMax: 10, rightMin: 2, rightMax: 18 }, // правая сторона вверху
-            { topMin: 0, topMax: 12, rightMin: 30, rightMax: 50 }, // ближе к середине сверху
-            { topMin: 40, topMax: 70, rightMin: 0, rightMax: 18 }, // большой кластер внизу справа 1
-            { topMin: 55, topMax: 85, rightMin: 5, rightMax: 30 }, // большой кластер внизу справа 2
-            { topMin: 30, topMax: 55, rightMin: 18, rightMax: 40 }, // средняя правая зона
-            { topMin: 20, topMax: 45, rightMin: 25, rightMax: 60 }, // ещё зона справа-ниже
+            { topMin: -12, topMax: -4, rightMin: -12, rightMax: -4 },
+            { topMin: -6, topMax: 4, rightMin: -8, rightMax: 2 },
+            { topMin: 0, topMax: 10, rightMin: 2, rightMax: 18 },
+            { topMin: 0, topMax: 12, rightMin: 30, rightMax: 50 },
+            { topMin: 40, topMax: 70, rightMin: 0, rightMax: 18 },
+            { topMin: 55, topMax: 85, rightMin: 5, rightMax: 30 },
+            { topMin: 30, topMax: 55, rightMin: 18, rightMax: 40 },
+            { topMin: 20, topMax: 45, rightMin: 25, rightMax: 60 },
           ];
 
           let maxTime = 0;
@@ -233,7 +221,7 @@
             const p = document.createElement("img");
             p.src = "images/sakura.png";
             p.className = "petal";
-            // Выбираем зону циклически, чтобы все зоны использовались
+
             const zone = zones[i % zones.length];
             const topOffset =
               zone.topMin + Math.random() * (zone.topMax - zone.topMin);
@@ -241,13 +229,13 @@
               zone.rightMin + Math.random() * (zone.rightMax - zone.rightMin);
             p.style.top = topOffset + "%";
             p.style.right = rightOffset + "%";
-            // старт одновременно: задержка = 0; чуть быстрее длительность
-            const dur = 2000 + Math.random() * 1500; // 2.0-3.5s (ускорено)
-            const delay = 0; // стартуем одновременно
+
+            const dur = 2000 + Math.random() * 1500;
+            const delay = 0;
             p.style.animation = `petalFall ${dur}ms linear ${delay}ms forwards`;
-            // случайный начальный поворот
+
             p.style.transform = `rotate(${Math.random() * 360}deg)`;
-            // удаляем элемент по окончании анимации
+
             p.addEventListener("animationend", () => {
               if (p && p.parentNode) p.parentNode.removeChild(p);
             });
@@ -256,7 +244,7 @@
             const totalMs = dur + delay;
             if (totalMs > maxTime) maxTime = totalMs;
           }
-          // Разблокируем кнопку через максимум длительности (+ небольшой буфер), чтобы можно было повторить
+
           setTimeout(
             () => {
               windButton.disabled = false;
@@ -266,7 +254,6 @@
         });
       }
 
-      // Кнопка перехода со страницы прогулки на четвертую страницу (только навигация по клику)
       const toFourthButton = document.getElementById("toFourthButton");
       if (toFourthButton) {
         toFourthButton.addEventListener("click", function (e) {
