@@ -127,6 +127,7 @@ button:hover {
   position: absolute;
   background-color: #9494ff;
   padding: 5px;
+  font-family: "pixel", sans-serif;
 }
 
 .pet-button1 {
