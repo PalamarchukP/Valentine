@@ -56,7 +56,7 @@
           alt="лежим"
           style="display: none"
         />
-        <button id="nextButton2" class="walk">погулять -></button>
+        <button id="nextButton2" class="walk">свидание -></button>
       </div>
 
       <!-- третья  страница -->
@@ -148,8 +148,42 @@
       const imgKirill = document.querySelector(".img-kirill");
       const imgPolina = document.querySelector(".img-polina");
 
-      const coordinates1 = { top: 990, left: 1000 };
-      const coordinates2 = { top: 930, left: 1860 };
+      const coordinates1 = { top: 870, left: 980 };
+      const coordinates2 = { top: 810, left: 1820 };
+
+      function getCoordinates() {
+        if (window.innerWidth >= 1921) {
+          return {
+            coordinates1: { top: 990, left: 1000 },
+            coordinates2: { top: 910, left: 1850 },
+          };
+        } else if (window.innerWidth >= 1281) {
+          return {
+            coordinates1: { top: 720, left: 740 },
+            coordinates2: { top: 670, left: 1370 },
+          };
+        } else if (window.innerWidth >= 760) {
+          return {
+            coordinates1: { top: 450, left: 490 },
+            coordinates2: { top: 420, left: 910 },
+          };
+        } else if (window.innerWidth >= 393) {
+          return {
+            coordinates1: { top: 580, left: 50 },
+            coordinates2: { top: 560, left: 260 },
+          };
+        } else if (window.innerWidth >= 390) {
+          return {
+            coordinates1: { top: 575, left: 50 },
+            coordinates2: { top: 555, left: 260 },
+          };
+        } else {
+          return {
+            coordinates1: { top: 450, left: 490 },
+            coordinates2: { top: 420, left: 910 },
+          };
+        }
+      }
 
       let pet1Clicked = false;
       let pet2Clicked = false;
@@ -181,6 +215,7 @@
 
       petButton1.addEventListener("click", function () {
         console.log("Кнопка 'погладить котика 1' нажата");
+        const { coordinates1 } = getCoordinates();
         showHeartIcon(heartIcon1, coordinates1);
         pet1Clicked = true;
         checkAndHide();
@@ -188,6 +223,7 @@
 
       petButton2.addEventListener("click", function () {
         console.log("Кнопка 'погладить котика 2' нажата");
+        const { coordinates2 } = getCoordinates();
         showHeartIcon(heartIcon2, coordinates2);
         pet2Clicked = true;
         checkAndHide();

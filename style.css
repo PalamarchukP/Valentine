@@ -367,3 +367,90 @@ button:hover {
     transform: scale(1);
   }
 }
+
+@media (max-width: 394px) {
+  .img-kirill {
+    width: 15%;
+    left: 20%;
+  }
+  .img-polina {
+    width: 21%;
+    left: 80%;
+    top: 75%;
+  }
+
+  .pet-button1 {
+    left: 20%;
+    bottom: 10%;
+  }
+
+  .pet-button2 {
+    left: 80%;
+    bottom: 10%;
+  }
+
+  .sleep {
+    width: 30%;
+    left: 80%;
+    bottom: 15%;
+  }
+
+  .table {
+    width: 35%;
+    left: 35%;
+    bottom: 3%;
+  }
+
+  .food-massage {
+    font-size: 12px;
+    left: 40%;
+    bottom: 30%;
+  }
+
+  .wind {
+    font-size: 12px;
+    width: 60%;
+    left: 30%;
+    bottom: 25%;
+  }
+
+  .go {
+    width: 25%;
+    left: 80%;
+    bottom: 0%;
+  }
+
+  .img-together {
+    width: 30%;
+    left: 37%;
+    bottom: 39%;
+  }
+
+  .massage-icon {
+    width: 22%;
+    left: 47%;
+    bottom: 46%;
+  }
+
+  .massage-text {
+    font-size: 9px;
+    letter-spacing: 0;
+    left: 50%;
+    bottom: 46.5%;
+  }
+}
+
+@media (max-width: 390px) {
+  .massage-icon {
+    width: 22%;
+    left: 47%;
+    bottom: 46%;
+  }
+
+  .massage-text {
+    font-size: 9px;
+    letter-spacing: 0;
+    left: 50.5%;
+    bottom: 46.5%;
+  }
+}
